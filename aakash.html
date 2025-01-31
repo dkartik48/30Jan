@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,45 +13,112 @@
             font-family: 'Arial', sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #ff6f61, #ff8a00);
             color: white;
-            text-align: center;
-            height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        nav a {
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+            padding: 10px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #ff7eb3;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        .nav-left .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffcc00;
+        }
+        .nav-right {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-icons i {
+            font-size: 1.5rem;
+            color: white;
+            transition: 0.3s;
+        }
+        .nav-icons i:hover {
+            color: #ff7eb3;
+            transform: scale(1.2);
+        }
+        .search-bar {
+            padding: 8px 15px;
+            border-radius: 25px;
+            border: none;
+            background-color: white;
+            color: black;
+            width: 250px;
+            font-size: 1rem;
+        }
+        .search-bar:focus {
+            outline: none;
+            border: 2px solid #ff7eb3;
         }
         .container {
-            max-width: 400px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-top: 100px;
         }
         h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
         .input-group {
-            margin: 15px 0;
+            margin-bottom: 20px;
             text-align: left;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 1rem;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         input {
             width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            padding: 12px 15px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #ff7eb3;
+            background: rgba(255, 255, 255, 0.5);
+            outline: none;
         }
         .btn {
-            padding: 12px 24px;
-            font-size: 1rem;
+            padding: 12px;
+            font-size: 1.2rem;
             color: white;
             background: #ff7eb3;
             border: none;
@@ -61,32 +129,99 @@
         }
         .btn:hover {
             background: #ff4f81;
+            transform: scale(1.05);
         }
-        .forgot-pass {
-            margin-top: 10px;
-            font-size: 0.9rem;
+        .forgot-pass, .register-link {
+            margin-top: 15px;
+            font-size: 0.95rem;
         }
-        .forgot-pass a {
+        .forgot-pass a, .register-link a {
             color: #ff7eb3;
             text-decoration: none;
+            font-weight: 500;
+        }
+        .forgot-pass a:hover, .register-link a:hover {
+            color: #ff4f81;
+        }
+        footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            color: white;
+            font-size: 1rem;
+            width: 100%;
+        }
+        footer p {
+            margin-top: 10px;
+        }
+        .success-message {
+            color: #32CD32;
+            font-size: 1.2rem;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-left">
+            <a href="#" class="logo">TIKTAK</a>
+        </div>
+        <div class="nav-right">
+            <input type="text" class="search-bar" placeholder="Search...">
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-home"></i></a>
+                <a href="#"><i class="fas fa-info-circle"></i></a>
+                <a href="#"><i class="fas fa-phone-alt"></i></a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>Login</h1>
-        <form>
+        <form id="login-form">
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
             </div>
             <button type="submit" class="btn">Login</button>
             <p class="forgot-pass"><a href="#">Forgot Password?</a></p>
+            <p class="register-link"><a href="#">Don't have an account? Register</a></p>
         </form>
+
+        <!-- Success message container -->
+        <div id="success-message" class="success-message" style="display: none;">Logged in successfully!</div>
     </div>
+
+    <!-- Footer with Rights Reserved text -->
+    <footer>
+        <p>&copy; 2025 TIKTAK | All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            // Get the values from input fields
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Check if the fields are empty
+            if (username === "" || password === "") {
+                alert("Please fill in both the username and password fields.");
+            } else {
+                // Display success message
+                document.getElementById("success-message").style.display = "block";
+
+                // Optionally, hide the success message after 3 seconds
+                setTimeout(function() {
+                    document.getElementById("success-message").style.display = "none";
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 </html>
