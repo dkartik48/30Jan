@@ -13,7 +13,7 @@
             font-family: 'Arial', sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #ff6f61, #ff8a00);
+            background: linear-gradient(135deg, #6a5acd, #8a2be2);
             color: white;
             display: flex;
             justify-content: center;
@@ -26,16 +26,16 @@
             position: absolute;
             top: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         nav a {
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             text-decoration: none;
             padding: 10px;
             transition: 0.3s;
@@ -45,46 +45,15 @@
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
         }
-        .nav-left .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffcc00;
-        }
-        .nav-right {
-            display: flex;
-            gap: 20px;
-        }
-        .nav-icons i {
-            font-size: 1.5rem;
-            color: white;
-            transition: 0.3s;
-        }
-        .nav-icons i:hover {
-            color: #ff7eb3;
-            transform: scale(1.2);
-        }
-        .search-bar {
-            padding: 8px 15px;
-            border-radius: 25px;
-            border: none;
-            background-color: white;
-            color: black;
-            width: 250px;
-            font-size: 1rem;
-        }
-        .search-bar:focus {
-            outline: none;
-            border: 2px solid #ff7eb3;
-        }
         .container {
             width: 100%;
             max-width: 450px;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            margin-top: 100px;
+            margin-top: 60px;
         }
         h1 {
             font-size: 2.4rem;
@@ -143,42 +112,36 @@
         .forgot-pass a:hover, .register-link a:hover {
             color: #ff4f81;
         }
-        footer {
-            position: absolute;
-            bottom: 20px;
-            text-align: center;
+        .nav-icons {
+            font-size: 1.5rem;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-icons i {
             color: white;
-            font-size: 1rem;
-            width: 100%;
+            transition: 0.3s;
         }
-        footer p {
-            margin-top: 10px;
-        }
-        .success-message {
-            color: #32CD32;
-            font-size: 1.2rem;
-            margin-top: 10px;
+        .nav-icons i:hover {
+            color: #ff7eb3;
+            transform: scale(1.2);
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-left">
-            <a href="#" class="logo">TIKTAK</a>
+            <a href="#">Logo</a>
         </div>
-        <div class="nav-right">
-            <input type="text" class="search-bar" placeholder="Search...">
-            <div class="nav-icons">
-                <a href="#"><i class="fas fa-home"></i></a>
-                <a href="#"><i class="fas fa-info-circle"></i></a>
-                <a href="#"><i class="fas fa-phone-alt"></i></a>
-            </div>
+        <div class="nav-right nav-icons">
+            <a href="#"><i class="fas fa-home"></i></a>
+            <a href="#"><i class="fas fa-info-circle"></i></a>
+            <a href="#"><i class="fas fa-phone-alt"></i></a>
         </div>
     </nav>
 
     <div class="container">
         <h1>Login</h1>
-        <form id="login-form">
+        <form>
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required placeholder="Enter your username">
@@ -191,37 +154,6 @@
             <p class="forgot-pass"><a href="#">Forgot Password?</a></p>
             <p class="register-link"><a href="#">Don't have an account? Register</a></p>
         </form>
-
-        <!-- Success message container -->
-        <div id="success-message" class="success-message" style="display: none;">Logged in successfully!</div>
     </div>
-
-    <!-- Footer with Rights Reserved text -->
-    <footer>
-        <p>&copy; 2025 TIKTAK | All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.getElementById("login-form").addEventListener("submit", function(event) {
-            event.preventDefault();  // Prevent form submission
-
-            // Get the values from input fields
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            // Check if the fields are empty
-            if (username === "" || password === "") {
-                alert("Please fill in both the username and password fields.");
-            } else {
-                // Display success message
-                document.getElementById("success-message").style.display = "block";
-
-                // Optionally, hide the success message after 3 seconds
-                setTimeout(function() {
-                    document.getElementById("success-message").style.display = "none";
-                }, 3000);
-            }
-        });
-    </script>
 </body>
 </html>
